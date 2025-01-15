@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+ }
+ * {
+    box-sizing: border-box;
+  }
+.menu-head{
+    border: solid 2px black;
+    text-align: center;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+li{
+    border: solid 2px black;
+    height: 50px;
+    text-align: center;
+    align-content: center;
+
+}
+.pad{
+    width: 25%;
+    cursor: pointer;
+}
+.pad:hover{
+    background-color:rgb(39, 41, 41);
+}
+.noodle{
+    width: 25%;
+    cursor: pointer;
+}
+.noodle:hover{
+    background-color:rgb(39, 41, 41);
+}
+.yom{
+    width: 25%;
+    cursor: pointer;
+}
+.yom:hover{
+    background-color:rgb(39, 41, 41);
+}
+.set{
+    width:25%;
+    cursor: pointer;
+}
+.set:hover{
+    background-color:rgb(39, 41, 41);
+}
+/*สิ้นสุดส่วนบน*/
+.foodview{
+    align-content: center;
+}
+/*เริ่มต้น show img grid*/
+.foodview-pad{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    margin: 10px;
+    gap: 5px;
+}
+.foodview-noodle{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    margin: 10px;
+    gap: 5px;
+}
+.foodview-yom{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    margin: 10px;
+    gap: 5px;
+}
+.foodview-set{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    margin: 10px;
+    gap: 5px;
+}
+
+/*สิ้นสุด show img grid*/
+@media only screen and (max-width: 1200px) {
+    .foodview-pad {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .foodview-noodle{
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .foodview-yom{
+        display: grid;
+        grid-template-columns: auto ;
+    }
+    .foodview-set{
+        display: grid;
+        grid-template-columns: auto;
+    }
+  }
+  @media only screen and (min-width: 1600px) {
+    .foodview-pad {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .foodview-noodle{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .foodview-yom{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .foodview-set{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+  }
+  img{
+    height: 500px;
+    width: 500px;
+  }
+.foodpad{
+    text-align: center;
+    font-size: 30px;
+    
+}
+.foodtom{
+    text-align: center;
+    font-size: 30px;
+}
+.foodyom{
+    background-color: gba(0, 255, 0, 0.8);
+    text-align: center;
+    font-size: 30px;
+}
