@@ -14,6 +14,7 @@ ul{
     margin: 0;
     padding: 0;
     display: flex;
+    width: 100%;
 }
 li{
     border: solid 2px black;
@@ -22,33 +23,13 @@ li{
     align-content: center;
 
 }
-.pad{
+.pad, .noodle, .yom, .set {
     width: 25%;
     cursor: pointer;
 }
-.pad:hover{
-    background-color:rgb(39, 41, 41);
-}
-.noodle{
-    width: 25%;
-    cursor: pointer;
-}
-.noodle:hover{
-    background-color:rgb(39, 41, 41);
-}
-.yom{
-    width: 25%;
-    cursor: pointer;
-}
-.yom:hover{
-    background-color:rgb(39, 41, 41);
-}
-.set{
-    width:25%;
-    cursor: pointer;
-}
-.set:hover{
-    background-color:rgb(39, 41, 41);
+
+.pad:hover, .noodle:hover, .yom:hover, .set:hover {
+    background-color: rgb(39, 41, 41);
 }
 /*สิ้นสุดส่วนบน*/
 .foodview{
@@ -79,45 +60,7 @@ li{
     margin: 10px;
     gap: 5px;
 }
-
-/*สิ้นสุด show img grid*/
-@media only screen and (max-width: 1200px) {
-    .foodview-pad {
-        display: grid;
-        grid-template-columns: auto;
-    }
-    .foodview-noodle{
-        display: grid;
-        grid-template-columns: auto;
-    }
-    .foodview-yom{
-        display: grid;
-        grid-template-columns: auto ;
-    }
-    .foodview-set{
-        display: grid;
-        grid-template-columns: auto;
-    }
-  }
-  @media only screen and (min-width: 1600px) {
-    .foodview-pad {
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-    .foodview-noodle{
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-    .foodview-yom{
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-    .foodview-set{
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-  }
-  img{
+img{
     height: 500px;
     width: 500px;
   }
@@ -134,4 +77,17 @@ li{
     background-color: gba(0, 255, 0, 0.8);
     text-align: center;
     font-size: 30px;
+}
+/*สิ้นสุด show img grid*/
+@media only screen and (max-width: 680px) {
+    .foodview-pad, .foodview-noodle, .foodview-yom, .foodview-set{
+        display: grid;
+        grid-template-columns: auto;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+    img{
+        height: 300px;
+        width: 300px;
+    }
 }
