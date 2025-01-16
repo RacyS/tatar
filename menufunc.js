@@ -1,3 +1,4 @@
+
 function showfood(type) {
     // Hide all food view sections
     const sections = document.querySelectorAll(".foodview > div");

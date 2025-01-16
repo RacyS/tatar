@@ -1,9 +1,28 @@
+* {
+    box-sizing: border-box;
+  }
 body {
     margin: 0;
     padding: 0;
  }
- * {
-    box-sizing: border-box;
+ #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+  
+  #myBtn:hover {
+    background-color: #555;
   }
 .menu-head{
     border: solid 2px black;
@@ -21,6 +40,7 @@ li{
     height: 50px;
     text-align: center;
     align-content: center;
+    background-color: white;
 
 }
 .pad, .noodle, .yom, .set {
@@ -36,25 +56,7 @@ li{
     align-content: center;
 }
 /*เริ่มต้น show img grid*/
-.foodview-pad{
-    display: grid;
-    grid-template-columns: auto auto auto ;
-    margin: 10px;
-    gap: 5px;
-}
-.foodview-noodle{
-    display: grid;
-    grid-template-columns: auto auto auto ;
-    margin: 10px;
-    gap: 5px;
-}
-.foodview-yom{
-    display: grid;
-    grid-template-columns: auto auto auto ;
-    margin: 10px;
-    gap: 5px;
-}
-.foodview-set{
+.foodview-pad, .foodview-noodle, .foodview-yom, .foodview-set{
     display: grid;
     grid-template-columns: auto auto auto ;
     margin: 10px;
@@ -64,19 +66,10 @@ img{
     height: 500px;
     width: 500px;
   }
-.foodpad{
+.foodpad, .foodtom,.foodyom{
     text-align: center;
     font-size: 30px;
     
-}
-.foodtom{
-    text-align: center;
-    font-size: 30px;
-}
-.foodyom{
-    background-color: gba(0, 255, 0, 0.8);
-    text-align: center;
-    font-size: 30px;
 }
 /*สิ้นสุด show img grid*/
 @media only screen and (max-width: 680px) {
