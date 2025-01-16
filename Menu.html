@@ -9,16 +9,41 @@
     </script>
 </head>
 <body>
+<button onclick="topFunction()" id="myBtn" title="Go to top"> &#x2191;</button>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
     <div class="menu-head">
         <h2>เมนู</h2>
     </div>
-    <div class="typefood">
-        <ul>
-            <li class="pad" id="color1" onclick="showfood('pad')" style="font-size: 15px">ข้าว / กับข้าว</li>
-            <li class="noodle" id="color2" onclick="showfood('noodle')" style="font-size: 15px">เส้น</li>
-             <li class="yom" id="color3" onclick="showfood('yom')"style="font-size: 15px">ยำ</li>
-            <li class="set" id="color4" onclick="showfood('set')" style="font-size: 15px">เซท</li>
-        </ul>
+    <div class="main">
+        <div class="typefood">
+            <ul>
+                <li class="pad" id="color1" onclick="showfood('pad')" style="font-size: 15px">ข้าว / กับข้าว</li>
+                <li class="noodle" id="color2" onclick="showfood('noodle')" style="font-size: 15px">เส้น</li>
+                <li class="yom" id="color3" onclick="showfood('yom')"style="font-size: 15px">ยำ</li>
+                <li class="set" id="color4" onclick="showfood('set')" style="font-size: 15px">เซท</li>
+            </ul>
+        </div>
     </div>
     <div class="foodview">
         <div class="foodview-pad">
