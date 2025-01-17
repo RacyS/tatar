@@ -14,8 +14,8 @@ function showfood(type) {
         document.getElementById("color3").style.backgroundColor = "white";        
         document.getElementById("color4").style.backgroundColor = "white";
 
-    } else if (type === "noodle") {
-        document.querySelector(".foodview-noodle").style.display = "grid";
+    } else if (type === "kubrice") {
+        document.querySelector(".foodview-kubrice").style.display = "grid";
         document.getElementById("color2").style.backgroundColor = "gray";
         document.getElementById("color1").style.backgroundColor = "white";
         document.getElementById("color3").style.backgroundColor = "white";        

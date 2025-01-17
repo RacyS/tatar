@@ -43,12 +43,12 @@ li{
     background-color: white;
 
 }
-.pad, .noodle, .yom, .set {
+.pad, .kubrice, .yom, .set {
     width: 25%;
     cursor: pointer;
 }
 
-.pad:hover, .noodle:hover, .yom:hover, .set:hover {
+.pad:hover, .kubrice:hover, .yom:hover, .set:hover {
     background-color: rgb(39, 41, 41);
 }
 /*สิ้นสุดส่วนบน*/
@@ -56,7 +56,7 @@ li{
     align-content: center;
 }
 /*เริ่มต้น show img grid*/
-.foodview-pad, .foodview-noodle, .foodview-yom, .foodview-set{
+.foodview-pad, .foodview-kubrice, .foodview-yom, .foodview-set{
     display: grid;
     grid-template-columns: auto auto auto ;
     margin: 10px;
@@ -71,9 +71,10 @@ img{
     font-size: 30px;
     
 }
+
 /*สิ้นสุด show img grid*/
 @media only screen and (max-width: 680px) {
-    .foodview-pad, .foodview-noodle, .foodview-yom, .foodview-set{
+    .foodview-pad, .foodview-kubrice, .foodview-yom, .foodview-set{
         display: grid;
         grid-template-columns: auto;
         font-size: 15px;
