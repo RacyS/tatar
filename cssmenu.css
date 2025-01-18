@@ -76,7 +76,7 @@ img{
 @media only screen and (max-width: 680px) {
     .foodview-pad, .foodview-kubrice, .foodview-yom, .foodview-set{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto;
         font-size: 15px;
         margin-top: 15px;
     }
