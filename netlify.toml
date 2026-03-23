@@ -1,4 +1,9 @@
-[[redirects]]
-from ="/*"
-to = "/Menu.html"
-status = 200
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
