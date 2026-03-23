@@ -11,6 +11,7 @@ export default function Home() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             <span className="text-purple-500">ร้านจุ๊บ</span>อาหารตามสั่ง
+            <span className="text-sm text-red-400 block">สามารถทักถามเมนูเพิ่มเติมได้ใน LINE</span>
           </span>
         </div>
       </nav>
