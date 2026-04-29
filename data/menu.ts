@@ -74,7 +74,7 @@ export const menuall: MenuItem[] = [
   {id: 64, name: "พริกแกงปลานิล", image: "/images/kubข้าว/kub64.jpg", category: "kub"},
   {id: 65, name: "ผัดฉ่าหมูชิ้น", image: "/images/kubข้าว/kub65.jpg", category: "kub"},
   {id: 66, name: "ผัดฉ่าหมูชิ้น", image: "/images/kubข้าว/kub66.jpg", category: "kub"},
-  {id: 67, name: "เส้นเล็กกระเพาหมูกรอบ", image: "/images/noodle/noodle1.jpg", category: "noodle"},
+  {id: 67, name: "เส้นเล็กกะเพราหมูกรอบ", image: "/images/noodle/noodle1.jpg", category: "noodle"},
   {id: 68, name: "ราดหน้าทะเล", image: "/images/noodle/noodle2.jpg", category: "noodle"},
   {id: 69, name: "มาม่าขี้เมาทะเล", image: "/images/noodle/noodle3.jpg", category: "noodle"},
   {id: 70, name: "สปาเกตตี้ทะเล", image: "/images/noodle/noodle4.jpg", category: "noodle"},
