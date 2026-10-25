@@ -196,6 +196,7 @@ export const menuall: MenuItem[] = [
   {id: 186, name: "ตำไทย + น้ำตกหมู", image: "/images/set/set29.jpg", category: "set"},
   {id: 187, name: "ข้าวผัดน้ำจิ้มแจ่วหมูย่าง", image: "/images/set/set30.jpg", category: "set"},
   {id: 188, name: "กะเพราผักรวมคลุกข้าว + แครอทคลุกฝุ่น", image: "/images/set/set31.jpg", category: "set"},
+  {id: 188, name: "ข้าวผัดน้ำพริกปลาทูไข่ชะอม + ปลาดอลลี่ทอดกระเทียม", image: "/images/set/set32.jpg", category: "set"},
   {id: 189, name: "ต้มแซ่บกระดูกอ่อน", image: "/images/Tom/tom1.jpg", category: "tom"},
   {id: 190, name: "แกงส้มผักรวม", image: "/images/Tom/tom2.jpg", category: "tom"},
   {id: 191, name: "แกงส้มชะอมไข่ทอด", image: "/images/Tom/tom3.jpg", category: "tom"},
