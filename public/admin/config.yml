@@ -1,0 +1,38 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "menu"
+    label: "เมนูอาหาร"
+    files:
+      - label: "เพิ่มหรือแก้ไขเมนู"
+        name: "menu-additions"
+        file: "data/menu-additions.json"
+        format: "json"
+        fields:
+          - label: "เมนู"
+            name: "menuall"
+            widget: "list"
+            default: []
+            summary: "{{fields.name}} — {{fields.category}}"
+            fields:
+              - label: "ชื่อเมนู"
+                name: "name"
+                widget: "string"
+              - label: "รูปภาพ"
+                name: "image"
+                widget: "image"
+              - label: "หมวดหมู่"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "กับข้าว", value: "kub" }
+                  - { label: "เมนูเส้น", value: "noodle" }
+                  - { label: "อาหารจานเดียว", value: "rice" }
+                  - { label: "เซตสุดคุ้ม", value: "set" }
+                  - { label: "ต้มยำ/แกง", value: "tom" }
+                  - { label: "ยำรสเด็ด", value: "yom" }

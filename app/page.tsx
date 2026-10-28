@@ -11,7 +11,10 @@ export default function Home() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
             <span className="text-purple-500">ร้านจุ๊บ</span>อาหารตามสั่ง
+<<<<<<< HEAD
             <a href="https://lin.ee/PB24kUx" target="_blank" rel="noopener noreferrer" className="text-sm text-red-400 block hover:underline">สามารถทักถามเมนูเพิ่มเติมได้ใน LINE</a>
+=======
+>>>>>>> 623be1a (-add admin)
           </span>
         </div>
       </nav>
@@ -27,6 +30,7 @@ export default function Home() {
         Hidden SEO content - Search engine เห็นชื่อเมนูทั้งหมด
         แม้ user จะกด filter แล้วบางเมนูซ่อนอยู่
       */}
+<<<<<<< HEAD
       {/* LINE Floating Button */}
       <a
         href="https://lin.ee/PB24kUx"
@@ -41,6 +45,8 @@ export default function Home() {
         </svg>
       </a>
 
+=======
+>>>>>>> 623be1a (-add admin)
       <div className="sr-only" aria-hidden="true">
         <h1>ร้านจุ๊บ อาหารตามสั่ง - เมนูทั้งหมด</h1>
         {categories.map((cat) => (
@@ -58,4 +64,8 @@ export default function Home() {
       </div>
     </>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 623be1a (-add admin)
