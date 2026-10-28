@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # ร้านจุ๊บ อาหารตามสั่ง - Next.js
 
 ## วิธี migrate จาก Plain HTML → Next.js
@@ -68,4 +65,3 @@ npm run build
 | SEO | ❌ แย่ | ✅ ดีมาก |
 | Filter หมวดหมู่ | ✅ ทำงานได้ | ✅ ทำงานได้เหมือนเดิม |
 | Deploy บน Netlify | ✅ ได้ | ✅ ได้เหมือนเดิม |
->>>>>>> 623be1a (-add admin)

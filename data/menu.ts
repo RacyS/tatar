@@ -1,4 +1,6 @@
-export type Category = 'kub' | 'noodle' | 'rice' | 'set' | 'tom' | 'yom' | 'rap';
+import menuAdditions from './menu-additions.json'
+
+export type Category = 'kub' | 'noodle' | 'rice' | 'set' | 'tom' | 'yom';
 
 export interface MenuItem {
   id: number;
@@ -7,7 +9,7 @@ export interface MenuItem {
   category: Category;
 }
 
-export const menuall: MenuItem[] = [
+const existingMenuItems: MenuItem[] = [
   {id: 1, name: "ดอกหอมผัดตับ", image: "/images/kubข้าว/kub1.jpg", category: "kub"},
   {id: 2, name: "ชุดข้าวเซทไข้ข้น + สามชั้นผัดกะปิ + ทะเลทอดกระเทียม", image: "/images/kubข้าว/kub2.jpg", category: "kub"},
   {id: 3, name: "ผัดหอยลาย", image: "/images/kubข้าว/kub3.jpg", category: "kub"},
@@ -196,7 +198,6 @@ export const menuall: MenuItem[] = [
   {id: 186, name: "ตำไทย + น้ำตกหมู", image: "/images/set/set29.jpg", category: "set"},
   {id: 187, name: "ข้าวผัดน้ำจิ้มแจ่วหมูย่าง", image: "/images/set/set30.jpg", category: "set"},
   {id: 188, name: "กะเพราผักรวมคลุกข้าว + แครอทคลุกฝุ่น", image: "/images/set/set31.jpg", category: "set"},
-  {id: 188, name: "ข้าวผัดน้ำพริกปลาทูไข่ชะอม + ปลาดอลลี่ทอดกระเทียม", image: "/images/set/set32.jpg", category: "set"},
   {id: 189, name: "ต้มแซ่บกระดูกอ่อน", image: "/images/Tom/tom1.jpg", category: "tom"},
   {id: 190, name: "แกงส้มผักรวม", image: "/images/Tom/tom2.jpg", category: "tom"},
   {id: 191, name: "แกงส้มชะอมไข่ทอด", image: "/images/Tom/tom3.jpg", category: "tom"},
@@ -223,7 +224,21 @@ export const menuall: MenuItem[] = [
   {id: 212, name: "ยำหมูยอ", image: "/images/yom/yom13.jpg", category: "yom"},
   {id: 213, name: "ยำไข่ดาว", image: "/images/yom/yom14.jpg", category: "yom"},
   {id: 214, name: "ยำมาม่ารวม", image: "/images/yom/yom15.jpg", category: "yom"},
+  {id: 215, name: "ข้าวผัดน้ำพริกปลาทูไข่ชะอม + ปลาดอลลี่ทอดกระเทียม", image: "/images/set/set32.jpg", category: "set"}
 ];
+
+type MenuAddition = Omit<MenuItem, 'id'>
+
+// Generate IDs from the combined order so CMS-created menus always receive a
+// unique React key, even when editors do not enter an ID themselves.
+export const menuall: MenuItem[] = [
+  ...existingMenuItems.map((menu, index) => ({ ...menu, id: index + 1 })),
+  ...(menuAdditions.menuall as MenuAddition[]).map((menu, index) => ({
+    ...menu,
+    id: existingMenuItems.length + index + 1,
+    category: menu.category as Category,
+  })),
+]
 
 export const categories = [
   { value: 'all', label: 'ทั้งหมด' },
