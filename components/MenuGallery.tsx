@@ -2,13 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
-import { menuall, newMenuItems, categories, type MenuItem } from '@/data/menu'
-
-const navigationCategories = [
-  categories[0],
-  { value: 'new', label: 'เมนูใหม่' },
-  ...categories.slice(1),
-]
+import { menuall, categories, type MenuItem } from '@/data/menu'
 
 export default function MenuGallery() {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -18,7 +12,7 @@ export default function MenuGallery() {
   const countByCategory = useMemo(() => {
     const counts: Record<string, number> = {
       all: menuall.length,
-      new: newMenuItems.length,
+      new: 0,
     }
     menuall.forEach((m) => {
       counts[m.category] = (counts[m.category] ?? 0) + 1
@@ -32,7 +26,7 @@ export default function MenuGallery() {
       activeCategory === 'all'
         ? menuall
         : activeCategory === 'new'
-          ? [...newMenuItems].reverse()
+          ? menuall.filter((m) => m.category === 'new').reverse()
           : menuall.filter((m) => m.category === activeCategory)
 
     const q = searchQuery.trim().toLowerCase()
@@ -75,7 +69,7 @@ export default function MenuGallery() {
 
           {/* Category Buttons */}
           <div className="flex overflow-x-auto gap-2 pb-1 md:justify-center no-scrollbar items-center">
-            {navigationCategories.map((cat) => (
+            {categories.map((cat) => (
               <button
                 key={cat.value}
                 aria-pressed={activeCategory === cat.value}

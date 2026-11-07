@@ -1,0 +1,49 @@
+[data-theme="jub"] {
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #eee7f4;
+  --color-base-300: #e5dfea;
+  --color-base-content: #30283b;
+  --color-primary: #4b326c;
+  --color-primary-content: #ffffff;
+  --color-secondary: #e9ddf2;
+  --color-secondary-content: #4b326c;
+  --color-accent: #edd9c5;
+  --color-accent-content: #523827;
+  --color-neutral: #30283b;
+  --color-neutral-content: #faf7ff;
+  --color-info: #daeaf8;
+  --color-info-content: #233f58;
+  --color-success: #d9ecdf;
+  --color-success-content: #224631;
+  --color-warning: #f7e9c9;
+  --color-warning-content: #59421b;
+  --color-error: #f8dfdf;
+  --color-error-content: #762d36;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1.25rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+  background: #faf9f6;
+}
+
+.skip-link { position: fixed; top: -100px; left: 1rem; z-index: 1000; }
+.skip-link:focus { top: 1rem; }
+.welcome { background-image: radial-gradient(ellipse at top left, #faf5ff 0%, transparent 70%); }
+.workspace-card { transition: transform 180ms ease, box-shadow 180ms ease; }
+.workspace-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px #30283b09; }
+.workspace-card:focus-visible, a:focus-visible { outline: 3px solid var(--color-neutral); outline-offset: 4px; }
+.workspace-icon { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 1rem; background: var(--color-base-200); }
+.step-number { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--color-base-200); font-size: .7rem; font-weight: 600; }
+.food-composition { position: absolute; inset: 0 0 0 53%; }
+.food-orbit { position: absolute; width: 350px; height: 350px; border: 1px solid #d8c9e6; border-radius: 50%; left: 30px; top: 37px; }
+.food-main { position: absolute; width: 290px; height: 290px; object-fit: cover; border-radius: 50%; right: 22px; top: 50px; border: 9px solid #ffffff; box-shadow: 0 20px 45px #30283b20; transform: rotate(10deg); }
+.food-small { position: absolute; width: 144px; height: 144px; object-fit: cover; border-radius: 50%; left: 6px; bottom: 45px; border: 7px solid #ffffff; box-shadow: 0 12px 24px #30283b18; transform: rotate(-12deg); }
+.food-note { position: absolute; right: 30px; bottom: 30px; transform: rotate(-5deg); background: #fbf6eb; padding: 12px 20px; font-size: 12px; line-height: 1.9; border-radius: 4px; box-shadow: 0 3px 10px #30283b08; }
+.food-spark { position: absolute; top: 30px; left: 15px; color: #8f7aab; }
+@media (prefers-reduced-motion: reduce) { .workspace-card { transition: none; } .workspace-card:hover { transform: none; } }

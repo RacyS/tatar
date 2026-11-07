@@ -1,0 +1,13 @@
+/* Decap owns its form and authentication. Scope visual overrides to its root. */
+#nc-root { --jub-surface: #faf9f6; --jub-ink: #30283b; }
+#nc-root, #nc-root button, #nc-root input, #nc-root textarea, #nc-root select {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+}
+#nc-root [class*="AppMainContainer"], #nc-root [class*="AppContainer"] { background-color: var(--jub-surface); }
+#nc-root [class*="SidebarContainer"] { background-color: #f3eef7; }
+#nc-root [class*="ToolbarContainer"], #nc-root [class*="AppHeader"] { box-shadow: 0 1px 0 #e5dfea; }
+#nc-root button { border-radius: 9px; }
+#nc-root input:not([type="checkbox"]):not([type="radio"]), #nc-root textarea, #nc-root select { border-radius: 9px; }
+#nc-root input:focus-visible, #nc-root textarea:focus-visible, #nc-root select:focus-visible { outline: 2px solid #8f7aab; outline-offset: 2px; }
+.dashboard-return { position: fixed; bottom: 18px; left: 18px; z-index: 100; font-size: 12px; text-decoration: none; border: 1px solid #e5dfea; background: #ffffff; box-shadow: 0 4px 18px #30283b10; }
+@media (max-width: 600px) { .dashboard-return { bottom: 10px; left: 10px; min-height: 34px; padding: 0 12px; } }

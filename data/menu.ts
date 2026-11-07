@@ -1,6 +1,6 @@
 import menuAdditions from './menu-additions.json'
 
-export type Category = 'kub' | 'noodle' | 'rice' | 'set' | 'tom' | 'yom';
+export type Category = 'new' | 'kub' | 'noodle' | 'rice' | 'set' | 'tom' | 'yom';
 
 export interface MenuItem {
   id: number;
@@ -231,7 +231,7 @@ type MenuAddition = Omit<MenuItem, 'id'>
 
 // Generate IDs from the combined order so CMS-created menus always receive a
 // unique React key, even when editors do not enter an ID themselves.
-export const newMenuItems: MenuItem[] = (menuAdditions.menuall as MenuAddition[]).map(
+const addedMenuItems: MenuItem[] = (menuAdditions.menuall as MenuAddition[]).map(
   (menu, index) => ({
     ...menu,
     id: existingMenuItems.length + index + 1,
@@ -241,11 +241,12 @@ export const newMenuItems: MenuItem[] = (menuAdditions.menuall as MenuAddition[]
 
 export const menuall: MenuItem[] = [
   ...existingMenuItems.map((menu, index) => ({ ...menu, id: index + 1 })),
-  ...newMenuItems,
+  ...addedMenuItems,
 ]
 
 export const categories = [
   { value: 'all', label: 'ทั้งหมด' },
+  { value: 'new', label: 'เมนูใหม่' },
   { value: 'kub', label: 'กับข้าว' },
   { value: 'noodle', label: 'เมนูเส้น' },
   { value: 'rice', label: 'อาหารจานเดียว' },
