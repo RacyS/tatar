@@ -231,13 +231,17 @@ type MenuAddition = Omit<MenuItem, 'id'>
 
 // Generate IDs from the combined order so CMS-created menus always receive a
 // unique React key, even when editors do not enter an ID themselves.
-export const menuall: MenuItem[] = [
-  ...existingMenuItems.map((menu, index) => ({ ...menu, id: index + 1 })),
-  ...(menuAdditions.menuall as MenuAddition[]).map((menu, index) => ({
+export const newMenuItems: MenuItem[] = (menuAdditions.menuall as MenuAddition[]).map(
+  (menu, index) => ({
     ...menu,
     id: existingMenuItems.length + index + 1,
     category: menu.category as Category,
-  })),
+  }),
+)
+
+export const menuall: MenuItem[] = [
+  ...existingMenuItems.map((menu, index) => ({ ...menu, id: index + 1 })),
+  ...newMenuItems,
 ]
 
 export const categories = [

@@ -2,7 +2,13 @@
 
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
-import { menuall, categories, type MenuItem } from '@/data/menu'
+import { menuall, newMenuItems, categories, type MenuItem } from '@/data/menu'
+
+const navigationCategories = [
+  categories[0],
+  { value: 'new', label: 'เมนูใหม่' },
+  ...categories.slice(1),
+]
 
 export default function MenuGallery() {
   const [activeCategory, setActiveCategory] = useState('all')
@@ -10,7 +16,10 @@ export default function MenuGallery() {
 
   // นับจำนวนเมนูในแต่ละหมวด
   const countByCategory = useMemo(() => {
-    const counts: Record<string, number> = { all: menuall.length }
+    const counts: Record<string, number> = {
+      all: menuall.length,
+      new: newMenuItems.length,
+    }
     menuall.forEach((m) => {
       counts[m.category] = (counts[m.category] ?? 0) + 1
     })
@@ -22,7 +31,9 @@ export default function MenuGallery() {
     const byCat =
       activeCategory === 'all'
         ? menuall
-        : menuall.filter((m) => m.category === activeCategory)
+        : activeCategory === 'new'
+          ? [...newMenuItems].reverse()
+          : menuall.filter((m) => m.category === activeCategory)
 
     const q = searchQuery.trim().toLowerCase()
     if (!q) return byCat
@@ -64,9 +75,10 @@ export default function MenuGallery() {
 
           {/* Category Buttons */}
           <div className="flex overflow-x-auto gap-2 pb-1 md:justify-center no-scrollbar items-center">
-            {categories.map((cat) => (
+            {navigationCategories.map((cat) => (
               <button
                 key={cat.value}
+                aria-pressed={activeCategory === cat.value}
                 onClick={() => { setActiveCategory(cat.value); setSearchQuery('') }}
                 className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all active:scale-95 flex items-center gap-1.5 ${
                   activeCategory === cat.value
@@ -102,8 +114,16 @@ export default function MenuGallery() {
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-gray-500">
             <span className="text-5xl mb-4">🍽️</span>
-            <p className="text-lg font-medium">ไม่พบเมนูที่ค้นหา</p>
-            <p className="text-sm mt-1">ลองค้นหาด้วยคำอื่น หรือเลือกหมวดหมู่อื่น</p>
+            <p className="text-lg font-medium">
+              {activeCategory === 'new' && !searchQuery.trim()
+                ? 'ยังไม่มีเมนูใหม่'
+                : 'ไม่พบเมนูที่ค้นหา'}
+            </p>
+            <p className="text-sm mt-1">
+              {activeCategory === 'new' && !searchQuery.trim()
+                ? 'เลือกหมวดหมู่อื่นเพื่อดูเมนูทั้งหมดของร้าน'
+                : 'ลองค้นหาด้วยคำอื่น หรือเลือกหมวดหมู่อื่น'}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
