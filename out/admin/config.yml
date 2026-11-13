@@ -4,6 +4,8 @@ backend:
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
+display_url: "/"
+logo_url: "/admin/logo.svg"
 
 collections:
   - name: "menu"
@@ -30,6 +32,7 @@ collections:
                 name: "category"
                 widget: "select"
                 options:
+                  - { label: "เมนูใหม่", value: "new" }
                   - { label: "กับข้าว", value: "kub" }
                   - { label: "เมนูเส้น", value: "noodle" }
                   - { label: "อาหารจานเดียว", value: "rice" }

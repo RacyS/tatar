@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="th">
-      <body className="h-full overflow-auto bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
+    <html lang="th" data-theme="jub-food">
+      <body className="bg-base-200 font-sans text-base-content antialiased">
         {children}
         <Script
           src="https://identity.netlify.com/v1/netlify-identity-widget.js"

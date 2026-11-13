@@ -2,153 +2,87 @@
 
 import { useState, useMemo } from 'react'
 import Image from 'next/image'
-import { menuall, categories, type MenuItem } from '@/data/menu'
+import { menuall, categories } from '@/data/menu'
+
+const placeholderImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23eee7f4' width='400' height='300'/%3E%3Ctext x='200' y='165' text-anchor='middle' font-size='48'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E"
 
 export default function MenuGallery() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const query = searchQuery.trim()
 
-  // นับจำนวนเมนูในแต่ละหมวด
   const countByCategory = useMemo(() => {
-    const counts: Record<string, number> = {
-      all: menuall.length,
-      new: 0,
-    }
-    menuall.forEach((m) => {
-      counts[m.category] = (counts[m.category] ?? 0) + 1
-    })
+    const counts: Record<string, number> = { all: menuall.length, new: 0 }
+    menuall.forEach((menu) => { counts[menu.category] = (counts[menu.category] ?? 0) + 1 })
     return counts
   }, [])
 
-  // filter ตาม category แล้วค่อย filter ตาม search
-  const filtered: MenuItem[] = useMemo(() => {
-    const byCat =
-      activeCategory === 'all'
-        ? menuall
-        : activeCategory === 'new'
-          ? menuall.filter((m) => m.category === 'new').reverse()
-          : menuall.filter((m) => m.category === activeCategory)
+  const filtered = useMemo(() => {
+    const byCategory = activeCategory === 'all' ? menuall : menuall.filter((menu) => menu.category === activeCategory)
+    const ordered = activeCategory === 'new' ? [...byCategory].reverse() : byCategory
+    return ordered.filter((menu) => menu.name.toLowerCase().includes(query.toLowerCase()))
+  }, [activeCategory, query])
 
-    const q = searchQuery.trim().toLowerCase()
-    if (!q) return byCat
-    return byCat.filter((m) => m.name.toLowerCase().includes(q))
-  }, [activeCategory, searchQuery])
+  const categoryLabel = categories.find((category) => category.value === activeCategory)?.label ?? 'ทั้งหมด'
+  const resetFilters = () => { setActiveCategory('all'); setSearchQuery('') }
 
   return (
-    <>
-      {/* Category Nav + Search */}
-      <nav className="fixed top-[72px] w-full z-20 bg-black/95 backdrop-blur-md border-b border-gray-800 shadow-md">
-        <div className="max-w-screen-xl mx-auto px-4 pt-3 pb-2 space-y-2">
+    <section id="menu" className="mx-auto max-w-7xl px-5 pt-10 pb-16 sm:px-8 sm:pt-12" aria-labelledby="menu-title">
+      <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div><p className="mb-2 text-[11px] font-medium tracking-[0.2em] text-base-content/45">THE MENU</p><h1 id="menu-title" className="text-2xl font-semibold sm:text-3xl">เลือกจานที่ใช่สำหรับมื้อนี้</h1></div>
+        <p className="text-xs leading-6 text-base-content/55">เมนูหลากหลาย เลือกดูตามหมวดที่ชอบ</p>
+      </div>
 
-          {/* Search Bar */}
-          <div className="relative max-w-md mx-auto">
-            <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-gray-400">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="ค้นหาเมนู..."
-              className="w-full bg-gray-800/70 border border-gray-700 text-white placeholder-gray-400 text-sm rounded-full pl-9 pr-9 py-2 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white transition-colors"
-                aria-label="ล้างการค้นหา"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-          </div>
-
-          {/* Category Buttons */}
-          <div className="flex overflow-x-auto gap-2 pb-1 md:justify-center no-scrollbar items-center">
-            {categories.map((cat) => (
-              <button
-                key={cat.value}
-                aria-pressed={activeCategory === cat.value}
-                onClick={() => { setActiveCategory(cat.value); setSearchQuery('') }}
-                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-all active:scale-95 flex items-center gap-1.5 ${
-                  activeCategory === cat.value
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40'
-                    : 'text-gray-300 bg-gray-800/50 border border-gray-700 hover:bg-gray-700 hover:text-white hover:border-gray-500'
-                }`}
-              >
-                {cat.label}
-                <span className={`text-xs rounded-full px-1.5 py-0.5 font-semibold ${
-                  activeCategory === cat.value
-                    ? 'bg-purple-500/60 text-purple-100'
-                    : 'bg-gray-700 text-gray-400'
-                }`}>
-                  {countByCategory[cat.value] ?? 0}
-                </span>
-              </button>
-            ))}
-          </div>
-
+      <div className="sticky top-20 z-20 -mx-5 border-y border-base-300 bg-base-200/95 px-5 py-4 backdrop-blur-lg sm:-mx-1 sm:rounded-2xl sm:border sm:px-4">
+        <div className="mb-3 flex items-center justify-between gap-4">
+          <span className="hidden text-sm font-medium sm:block">หมวดหมู่อาหาร</span>
+          <label className="input h-11 w-full gap-2 rounded-full border-base-300 bg-base-100 sm:max-w-80">
+            <svg className="size-4 shrink-0 text-base-content/45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" strokeLinecap="round" /></svg>
+            <input type="search" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} aria-label="ค้นหาชื่อเมนูในหมวดที่เลือก" aria-controls="menu-results" placeholder="ลองค้นหา กะเพรา กุ้ง หมูกรอบ…" className="min-w-0 grow text-xs sm:text-sm" />
+            {searchQuery && <button type="button" onClick={() => setSearchQuery('')} className="btn size-7 min-h-0 shrink-0 rounded-full border-0 p-0" aria-label="ล้างการค้นหา"><span aria-hidden="true">×</span></button>}
+          </label>
         </div>
-      </nav>
+        <nav aria-label="หมวดหมู่อาหาร" className="category-scroll flex gap-2 overflow-x-auto pb-1 sm:gap-2.5">
+          {categories.map((category) => (
+            <button key={category.value} type="button" aria-pressed={activeCategory === category.value} aria-controls="menu-results" onClick={() => { setActiveCategory(category.value); setSearchQuery('') }} className={`btn h-10 min-h-10 shrink-0 gap-2 rounded-full px-4 text-xs font-medium sm:text-sm ${activeCategory === category.value ? 'border-neutral bg-neutral text-neutral-content' : 'border-base-300 bg-base-100 text-base-content/75'}`}>
+              {category.value === 'new' && <span aria-hidden="true">✦</span>}
+              {category.label}
+              <span className={`badge h-5 min-w-5 border-0 px-1.5 text-[10px] ${activeCategory === category.value ? 'bg-neutral-content/15 text-neutral-content' : 'bg-base-200 text-base-content/50'}`}>{countByCategory[category.value] ?? 0}</span>
+            </button>
+          ))}
+        </nav>
+      </div>
 
-      {/* Gallery Grid */}
-      <div className="min-h-full w-full px-4 md:px-8 py-8 mt-[148px]">
+      <div className="mt-7 mb-5 flex items-center justify-between gap-3">
+        <h3 className="text-lg font-medium">{categoryLabel === 'ทั้งหมด' ? 'เมนูทั้งหมด' : categoryLabel}</h3>
+        <p role="status" aria-live="polite" aria-atomic="true" className="text-right text-xs text-base-content/55">{query ? `ค้นหา “${query}” · ` : ''}{filtered.length} เมนู</p>
+      </div>
 
-        {/* จำนวนเมนูที่แสดงอยู่ */}
-        <p className="text-center text-sm text-gray-400 mb-5">
-          {searchQuery
-            ? `ผลการค้นหา "${searchQuery}" — พบ ${filtered.length} เมนู`
-            : `แสดง ${filtered.length} เมนู`}
-        </p>
-
+      <div id="menu-results">
         {filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-gray-500">
-            <span className="text-5xl mb-4">🍽️</span>
-            <p className="text-lg font-medium">
-              {activeCategory === 'new' && !searchQuery.trim()
-                ? 'ยังไม่มีเมนูใหม่'
-                : 'ไม่พบเมนูที่ค้นหา'}
-            </p>
-            <p className="text-sm mt-1">
-              {activeCategory === 'new' && !searchQuery.trim()
-                ? 'เลือกหมวดหมู่อื่นเพื่อดูเมนูทั้งหมดของร้าน'
-                : 'ลองค้นหาด้วยคำอื่น หรือเลือกหมวดหมู่อื่น'}
-            </p>
+          <div className="card card-border items-center bg-base-100 px-6 py-16 text-center">
+            <span aria-hidden="true" className="mb-5 flex size-16 items-center justify-center rounded-full bg-secondary text-3xl">🍽️</span>
+            <h4 className="text-lg font-medium">{activeCategory === 'new' && !query ? 'ยังไม่มีเมนูใหม่' : 'ไม่พบเมนูที่ค้นหา'}</h4>
+            <p className="mt-2 text-sm leading-7 text-base-content/60">{activeCategory === 'new' && !query ? 'ระหว่างนี้ เลือกดูจานอร่อยในหมวดอื่นได้เลย' : 'ลองเปลี่ยนคำค้น หรือกลับไปดูเมนูทั้งหมดของร้าน'}</p>
+            <button type="button" onClick={resetFilters} className="btn mt-6 rounded-full">ดูเมนูทั้งหมด <span aria-hidden="true">→</span></button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 gap-5 min-[420px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filtered.map((menu, index) => (
-              <div
-                key={menu.id}
-                className="gallery-card card-shine bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl glow-effect stagger-animation"
-                style={{ animationDelay: `${(index % 12) * 0.05}s` }}
-              >
-                <div className="relative overflow-hidden w-full h-56">
-                  <Image
-                    src={menu.image}
-                    alt={menu.name}
-                    fill
-                    className="object-cover gallery-card-img"
-                    loading={index < 8 ? 'eager' : 'lazy'}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.src =
-                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f3e8ff' width='400' height='300'/%3E%3Ctext x='200' y='150' text-anchor='middle' font-size='48'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E"
-                    }}
-                  />
+              <article key={menu.id} className="card food-card overflow-hidden border border-base-300 bg-base-100">
+                <figure className="relative aspect-4/3 overflow-hidden bg-secondary">
+                  <Image src={menu.image} alt={menu.name} fill sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 420px) 46vw, 90vw" className="object-cover" loading={index < 4 ? 'eager' : 'lazy'} onError={(event) => { if (event.currentTarget.src !== placeholderImage) { event.currentTarget.src = placeholderImage } }} />
+                  {menu.category === 'new' && <span className="badge absolute top-3 left-3 border-base-300 bg-base-100 px-3 py-3 text-xs">✦ เมนูใหม่</span>}
+                </figure>
+                <div className="card-body gap-2 p-4 sm:p-5">
+                  <p className="text-[10px] font-medium text-base-content/45 sm:text-xs">{categories.find((category) => category.value === menu.category)?.label}</p>
+                  <h4 className="card-title text-sm leading-7 font-medium sm:text-base">{menu.name}</h4>
                 </div>
-                <div className="p-4 text-center">
-                  <h3 className="text-base font-semibold text-gray-800 leading-snug">{menu.name}</h3>
-                </div>
-              </div>
+              </article>
             ))}
           </div>
         )}
       </div>
-    </>
+    </section>
   )
 }
