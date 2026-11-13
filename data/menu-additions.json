@@ -1,3 +1,9 @@
 {
-  "menuall": []
+  "menuall": [
+    {
+      "name": "ข้าวไข่ข้นห่อหมกทะเล",
+      "image": "/images/uploads/4dde79d4-88ec-4c0e-b521-b27a8c63149a.jpg",
+      "category": "rice"
+    }
+  ]
 }
